@@ -25,7 +25,6 @@ allprojects {
         implementation 'org.springframework.boot:spring-boot-starter-data-rest'
         implementation 'org.codehaus.groovy:groovy'
         implementation 'org.springframework.data:spring-data-rest-hal-browser'
-//        runtimeOnly 'com.h2database:h2'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         // --------------------
         implementation('org.springframework.boot:spring-boot-starter-actuator')
@@ -56,6 +55,6 @@ buildscript {
     dependencies {
         classpath("org.codehaus.groovy:groovy:${groovyVersion}")
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
     }
 }
