@@ -11,9 +11,17 @@ import org.testng.annotations.Test
 @Test
 @Slf4j
 @SpringBootTest
-class DocumentStoreApplicationTests extends DocumentStoreConfigTest {
+class DocumentStoreConfigTest extends AbstractTestNGSpringContextTests{
+    @Autowired
+    @Qualifier("bootstrapDataTextExample")
+    String textExample
+
+    @Autowired
+    H2SyncAdhocDocumentRepository repo
 
     void sanityCheck() {
-        super.sanityCheck()
+        assert textExample
+        assert repo
+        log.debug(textExample)
     }
 }

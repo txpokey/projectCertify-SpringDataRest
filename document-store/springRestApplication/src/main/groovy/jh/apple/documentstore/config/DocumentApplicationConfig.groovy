@@ -11,9 +11,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackages = ["jh.apple.documentstore"])
 class DocumentApplicationConfig{
 
-    @Bean(name = "dummy")
+    @Bean(name = "bootstrapDataTextExample")
     String getDummy() {
         final def dummy = "Now is the time for all good men to come to the aid of their country"
         dummy
     }
+
 }

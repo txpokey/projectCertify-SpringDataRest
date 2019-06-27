@@ -1,32 +1,28 @@
 package jh.apple.documentstore.service.bootstrap
 
 import groovy.util.logging.Slf4j
-import jh.apple.documentstore.repo.H2SyncAdhocDocumentRepository
+import jh.apple.documentstore.DocumentStoreConfigTest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
 import org.testng.annotations.Test
 
 @Test
 @Slf4j
 @SpringBootTest
-class ApplicationContentBootstrapServiceTest extends AbstractTestNGSpringContextTests{
+class ApplicationContentBootstrapServiceTest extends DocumentStoreConfigTest {
 
     @Autowired
-    @Qualifier("dummy")
-    String myDummy
-
-    @Autowired
-    H2SyncAdhocDocumentRepository repo
+    @Qualifier("applicationContentBootstrapService")
+    ApplicationContentBootstrapContract service
 
     void sanityCheck() {
-        assert myDummy
-        assert repo
+        super.sanityCheck()
+        assert super,repo
+        assert service
     }
 
     void testSpinUp() {
-        def service = new ApplicationContentBootstrapService()
         assert service
         def result = service.spinUp()
         assert result
