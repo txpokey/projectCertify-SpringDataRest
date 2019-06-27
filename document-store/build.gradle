@@ -1,22 +1,62 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.6.RELEASE'
-	id 'groovy'
+ext['groovy.version'] = groovyVersion // need for compile groovy to pick up groovy fix
+
+allprojects {
+    group = 'jh.apple'
+    version = '0.0.1-SNAPSHOT'
+
+    apply plugin: 'groovy'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+
+    version =  "${outputLibVersion}"
+
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/libs-release/" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+        implementation 'org.codehaus.groovy:groovy'
+        implementation 'org.springframework.data:spring-data-rest-hal-browser'
+        runtimeOnly 'com.h2database:h2'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        // --------------------
+        implementation('org.springframework.boot:spring-boot-starter-actuator')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+        // --------------------
+        testImplementation("org.testng:testng:${testNgVersion}")
+        implementation('com.google.code.findbugs:jsr305:latest.integration')
+    }
+    buildDir="$projectDir/out"
+    clean {
+        delete 'out'
+        delete 'build'
+    }
 }
 
-apply plugin: 'io.spring.dependency-management'
+apply from: "${rootProject.projectDir}/etc/gradle/apply/peek.gradle", to: allprojects
 
-group = 'jh.apple'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+buildscript {
 
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.codehaus.groovy:groovy'
-	implementation 'org.springframework.data:spring-data-rest-hal-browser'
-	runtimeOnly 'com.h2database:h2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://repo.spring.io/plugins-release/" }
+        maven { url "https://repo.spring.io/libs-release/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.codehaus.groovy:groovy:${groovyVersion}")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+    }
 }

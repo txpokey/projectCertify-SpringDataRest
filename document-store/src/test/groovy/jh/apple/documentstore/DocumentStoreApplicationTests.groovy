@@ -1,16 +1,17 @@
 package jh.apple.documentstore
 
-import org.junit.Test
-import org.junit.runner.RunWith
+import groovy.util.logging.Slf4j
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests
+import org.testng.annotations.Test
 
-@RunWith(SpringRunner)
+@Test
+@Slf4j
 @SpringBootTest
-class DocumentStoreApplicationTests {
+class DocumentStoreApplicationTests extends AbstractTestNGSpringContextTests {
 
-	@Test
-	void contextLoads() {
+	void sanityCheck() {
+        log.debug("HERE I AM")
 	}
 
 }

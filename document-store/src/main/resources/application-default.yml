@@ -1,0 +1,22 @@
+debug: false
+server:
+  port: 8080
+
+spring:
+  datasource:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+    ## use "create" when running the app for the first time
+    ## then change to "update" which just updates the schema when necessary
+      ddl-auto: create
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+logging:
+  level:
+    org.springframework.web: INFO
+    jh.apple.documentstore: DEBUG
+  file: /dev/null
+  pattern:
+    console: "%date{HH:mm:ss.SSS} [%thread] | %logger{10}.%method.%L : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n || %logger{10}.%method.%L"

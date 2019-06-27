@@ -1,0 +1,30 @@
+task hello {
+    doLast { task ->
+        println "I'm $task.project.name"
+    }
+}
+task version << {
+    println "Gradle version: " + project.getGradle().getGradleVersion()
+    println "Groovy version: " + GroovySystem.getVersion()
+}
+task printProps {
+    doFirst { task ->
+//        println "Project.hasProperty:> " + Project.hasProperty('projectName')  // noJoy
+        println "projectName:> $task.project.name"
+
+        println "javaVersion:> " + javaVersion
+        println "groovyVersion:> " + groovyVersion
+        println "springBootVersion:> " + springBootVersion
+        println "rootProject.ext.angularJsVersion:> " + rootProject.ext.angularJsVersion
+        println "angularJsVersion:> " + angularJsVersion
+        println "bootstrapJsVersion:> " + bootstrapJsVersion
+        println "spockVersion:> " + spockVersion
+        println "testNgVersion:> " + testNgVersion
+    }
+}
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '4.10.1'
+//}
+clean {
+    delete 'out'
+}
