@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @Slf4j
-@Profile(["deadbeef"])
+@Profile(["default"])
 @RestController("documentController")
 @RequestMapping("/storage")
 class DocumentApplicationController{
@@ -17,7 +17,7 @@ class DocumentApplicationController{
     private DocumentStoreServiceContract documentStoreService
 
     @Autowired
-    DocumentApplicationController(@Qualifier("gateWayServerMapForRoundRobin") DocumentStoreServiceContract documentStoreService) {
+    DocumentApplicationController(@Qualifier("documentStoreService") DocumentStoreServiceContract documentStoreService) {
         this.documentStoreService = documentStoreService
     }
 

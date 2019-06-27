@@ -1,6 +1,7 @@
 package jh.apple.documentstore
 
 import groovy.util.logging.Slf4j
+import jh.apple.documentstore.controller.DocumentApplicationController
 import jh.apple.documentstore.repo.H2SyncAdhocDocumentRepository
 import jh.apple.documentstore.service.DocumentStoreServiceContract
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,10 +25,16 @@ class DocumentStoreConfigTest extends AbstractTestNGSpringContextTests{
     @Qualifier("documentStoreService")
     DocumentStoreServiceContract storeService
 
+    @Autowired
+    @Qualifier("documentController")
+    DocumentApplicationController controller
+
     void sanityCheck() {
         assert textExample
         assert repo
         assert storeService
+        assert controller
+        assert controller.documentStoreService.repository
         log.debug(textExample)
     }
 }
