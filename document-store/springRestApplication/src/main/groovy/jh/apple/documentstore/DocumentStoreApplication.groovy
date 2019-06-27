@@ -3,7 +3,7 @@ package jh.apple.documentstore
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["jh.apple.documentstore"])
 class DocumentStoreApplication {
 
 	static void main(String[] args) {
@@ -12,7 +12,7 @@ class DocumentStoreApplication {
 //    @Autowired
 //    @Qualifier("applicationContentBootstrap")
 //    private ApplicationContentBootstrapService bootspinner
-
+//
 //    @PostConstruct
 //    void postConstruct() {
 //        assert bootspinner
