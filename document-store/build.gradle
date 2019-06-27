@@ -25,13 +25,13 @@ allprojects {
         implementation 'org.springframework.boot:spring-boot-starter-data-rest'
         implementation 'org.codehaus.groovy:groovy'
         implementation 'org.springframework.data:spring-data-rest-hal-browser'
-        runtimeOnly 'com.h2database:h2'
+//        runtimeOnly 'com.h2database:h2'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         // --------------------
         implementation('org.springframework.boot:spring-boot-starter-actuator')
         testImplementation('org.springframework.boot:spring-boot-starter-test')
-        implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
         // --------------------
+        implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
         testImplementation("org.testng:testng:${testNgVersion}")
         implementation('com.google.code.findbugs:jsr305:latest.integration')
     }
