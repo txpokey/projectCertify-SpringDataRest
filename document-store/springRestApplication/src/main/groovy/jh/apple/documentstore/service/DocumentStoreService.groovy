@@ -16,7 +16,37 @@ class DocumentStoreService implements DocumentStoreServiceContract{
     H2SyncAdhocDocumentRepository repository
 
     @Override
-    List<AdhocDocument> findByUuid(@Nonnull String uuid) {
-        return null
+    AdhocDocument save(@Nonnull AdhocDocument document) {
+        assert repository
+        assert document.payload
+        def result = repository.saveAndFlush(document)
+        assert result
+        assert result.id
+        result
     }
+
+    @Override
+    List<AdhocDocument> findAll() {
+        def result = repository.findAll()
+        assert result
+        result
+    }
+
+    @Override
+    Optional<AdhocDocument> findByLookupKey(@Nonnull String uuid) {
+        def result = repository.findByLookupKey(uuid)
+        assert result
+        result
+    }
+
+//    @Override
+//    AdhocDocument findByUuid(@Nonnull String uuid) {
+//        def result = repository.findByLookupKey(uuid)
+//        def result = repository.findByUuid(uuid)
+//        def result = repository.findById(1L)
+//        assert result
+//        assert result.id
+//        result
+//    }
+
 }

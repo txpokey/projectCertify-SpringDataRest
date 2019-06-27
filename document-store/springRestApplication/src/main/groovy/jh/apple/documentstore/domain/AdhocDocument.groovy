@@ -10,14 +10,14 @@ class AdhocDocument {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id
 
-    String uuid
-    String uuidLog
+    String lookupKey // use a guid here
+    String loggingKey // use a guid here
 
     @Lob
     @Column(name = "payload", columnDefinition="BLOB")
     private byte[] payload
 
-    String toString() { "[${uuid}, ${uuidLog} ]"}
+    String toString() { "[${lookupKey}, ${loggingKey} ]"}
 
     static String getUuid() {
         UUID.randomUUID() as String
@@ -26,7 +26,7 @@ class AdhocDocument {
         assert map.payload
         def uuid    = map.uuid    ?: getUuid()
         def uuidLog = map.uuidLog ?: uuid
-        Map payload = [ uuid: uuid , uuidLog: uuidLog , payload: map.payload ]
+        Map payload = [ loggingKey: uuid , lookupKey: uuid , payload: map.payload ]
         def candidate = new AdhocDocument( payload )
         candidate
     }

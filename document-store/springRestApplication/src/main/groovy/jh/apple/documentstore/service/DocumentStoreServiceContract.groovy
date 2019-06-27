@@ -6,8 +6,10 @@ import javax.annotation.Nonnull
 
 interface DocumentStoreServiceContract{
 
-//    AdhocDocument save(@Nonnull AdhocDocument document )
+    AdhocDocument save(@Nonnull AdhocDocument document)
 
-    List<AdhocDocument> findByUuid( @Nonnull String uuid )
+    List<AdhocDocument> findAll()
+
+    Optional<AdhocDocument> findByLookupKey(@Nonnull String uuid)
 
 }
