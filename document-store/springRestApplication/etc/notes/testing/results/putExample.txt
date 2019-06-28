@@ -1,0 +1,89 @@
+175 mak@punisher:> curl -i -X PUT localhost:8080/storage/documents/shoudFail -H "Content-Type: text/plain; charset=us-ascii"   --data-binary @daveBowman ; echo ""
+HTTP/1.1 404
+Content-Length: 0
+Date: Fri, 28 Jun 2019 15:32:14 GMT
+
+===========================================
+
+143 mak@punisher:> curl -i -X GET localhost:8080/storage/documents/91924ed8-9a6b-4846-87bc-1d5bd71b7a84  ; echo ""
+HTTP/1.1 200
+Content-Type: application/octet-stream
+Content-Length: 68
+Date: Fri, 28 Jun 2019 15:05:15 GMT
+
+Now is the time for all good men to come to the aid of their country
+144 mak@punisher:> curl -i -X PUT localhost:8080/storage/documents/91924ed8-9a6b-4846-87bc-1d5bd71b7a84 -H "Content-Type: text/plain; charset=us-ascii"   --data-binary @daveBowman ; echo ""
+HTTP/1.1 204
+Date: Fri, 28 Jun 2019 15:05:36 GMT
+
+
+145 mak@punisher:> curl -i -X GET localhost:8080/storage/documents/91924ed8-9a6b-4846-87bc-1d5bd71b7a84  ; echo ""
+HTTP/1.1 200
+Content-Type: application/octet-stream
+Content-Length: 49
+Date: Fri, 28 Jun 2019 15:05:44 GMT
+
+"My God! It's FULL of STARS!" - Dave Bowman 2001
+
+===========================================
+----------------------------------------------- daveBowman on disk
+
+142 mak@punisher:> od --endian big -x daveBowman  | head -10
+0000000 224d 7920 476f 6421 2049 7427 7320 4655
+0000020 4c4c 206f 6620 5354 4152 5321 2220 2d20
+0000040 4461 7665 2042 6f77 6d61 6e20 3230 3031
+0000060 0a00
+0000061
+
+
+
+----------------------------------------------- daveBowman in memory
+0 = 0x22
+1 = 0x4D
+2 = 0x79
+3 = 0x20
+4 = 0x47
+5 = 0x6F
+6 = 0x64
+7 = 0x21
+8 = 0x20
+9 = 0x49
+10 = 0x74
+11 = 0x27
+12 = 0x73
+13 = 0x20
+14 = 0x46
+15 = 0x55
+16 = 0x4C
+17 = 0x4C
+18 = 0x20
+19 = 0x6F
+20 = 0x66
+21 = 0x20
+22 = 0x53
+23 = 0x54
+24 = 0x41
+25 = 0x52
+26 = 0x53
+27 = 0x21
+28 = 0x22
+29 = 0x20
+30 = 0x2D
+31 = 0x20
+32 = 0x44
+33 = 0x61
+34 = 0x76
+35 = 0x65
+36 = 0x20
+37 = 0x42
+38 = 0x6F
+39 = 0x77
+40 = 0x6D
+41 = 0x61
+42 = 0x6E
+43 = 0x20
+44 = 0x32
+45 = 0x30
+46 = 0x30
+47 = 0x31
+....

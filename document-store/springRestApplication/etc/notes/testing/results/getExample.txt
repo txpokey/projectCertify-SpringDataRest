@@ -1,0 +1,13 @@
+143 mak@punisher:> curl -i -X GET localhost:8080/storage/documents/91924ed8-9a6b-4846-87bc-1d5bd71b7a84  ; echo ""
+HTTP/1.1 200
+Content-Type: application/octet-stream
+Content-Length: 68
+Date: Fri, 28 Jun 2019 15:05:15 GMT
+
+Now is the time for all good men to come to the aid of their country
+173 mak@punisher:> curl -i -X GET localhost:8080/storage/documents/shouldFail  ; echo ""
+HTTP/1.1 404
+Content-Length: 0
+Date: Fri, 28 Jun 2019 15:30:53 GMT
+
+

@@ -1,0 +1,9 @@
+http://localhost:8080/rest/profile
+
+http://localhost:8080/rest/adhocDocuments
+
+http://localhost:8080/rest/browser/index.html#/rest/
+
+http://localhost:8080/rest/profile/adhocDocuments
+
+http://localhost:8080/storage/findAll

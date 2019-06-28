@@ -24,7 +24,8 @@ class DocumentApplicationController{
     private DocumentStoreServiceContract documentStoreService
 
     @Autowired
-    DocumentApplicationController(@Qualifier("documentStoreService") DocumentStoreServiceContract documentStoreService) {
+    DocumentApplicationController(
+            @Qualifier("documentStoreService") DocumentStoreServiceContract documentStoreService) {
         this.documentStoreService = documentStoreService
     }
 
@@ -43,6 +44,7 @@ class DocumentApplicationController{
                 ResponseEntity.status(HttpStatus.NOT_FOUND).build()
         re
     }
+
     @DeleteMapping("documents/{lookupKey}")
     def deleteByLookupKey(@Nonnull @PathVariable String lookupKey) {
         def success = documentStoreService.deleteByLookupKey(lookupKey)
@@ -53,24 +55,52 @@ class DocumentApplicationController{
 
     @PostMapping("documents")
     @ResponseBody
-    def post(HttpServletRequest request) {
-        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
-        def inputStream = request.getInputStream()
-        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
-        Map map = [ payload: requestBodyAsByteArray ]
+    def post(@RequestBody byte[] payload,
+             @RequestHeader(value = HttpHeaders.CONTENT_TYPE, required = false)
+                     String contentType) {
+        Map map = [payload: payload]
         AdhocDocument documentPreImage = AdhocDocument.of(map)
         def storedImage = documentStoreService.save(documentPreImage)
         def lookupKey = storedImage.lookupKey
         def re = ResponseEntity.status(HttpStatus.CREATED).body(lookupKey)
         re
     }
+
     @PutMapping("documents/{lookupKey}")
+    @ResponseBody
+    def put(@Nonnull @RequestBody byte[] payload,
+            @Nonnull @PathVariable String lookupKey,
+            @RequestHeader(value = HttpHeaders.CONTENT_TYPE, required = false)
+                    String contentType) {
+        def success = documentStoreService.update(lookupKey, payload)
+        def re = success ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        re
+    }
+
+    @Deprecated
+    @PostMapping("documents0")
+    @ResponseBody
+    def post(HttpServletRequest request) {
+        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
+        def inputStream = request.getInputStream()
+        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
+        Map map = [payload: requestBodyAsByteArray]
+        AdhocDocument documentPreImage = AdhocDocument.of(map)
+        def storedImage = documentStoreService.save(documentPreImage)
+        def lookupKey = storedImage.lookupKey
+        def re = ResponseEntity.status(HttpStatus.CREATED).body(lookupKey)
+        re
+    }
+
+    @Deprecated
+    @PutMapping("documents0/{lookupKey}")
     @ResponseBody
     def put(HttpServletRequest request, @Nonnull @PathVariable String lookupKey) {
         def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
         def inputStream = request.getInputStream()
         byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
-        def success = documentStoreService.update(lookupKey,requestBodyAsByteArray)
+        def success = documentStoreService.update(lookupKey, requestBodyAsByteArray)
         def re = success ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
                 ResponseEntity.status(HttpStatus.NOT_FOUND).build()
         re

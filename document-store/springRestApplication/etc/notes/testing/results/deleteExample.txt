@@ -1,0 +1,28 @@
+122 mak@punisher:> curl -i localhost:8080/storage/documents/dd7a046b-4fcc-482c-8bbf-0c6a35496a67  ; echo ""
+HTTP/1.1 200
+Content-Type: application/octet-stream
+Content-Length: 68
+Date: Fri, 28 Jun 2019 13:44:32 GMT
+
+Now is the time for all good men to come to the aid of their country
+123 mak@punisher:> echo "Now is the time for all good men to come to the aid of their country" | wc
+      1      16      69
+
+124 mak@punisher:> curl -i localhost:8080/storage/documents/shouldFail  ; echo ""
+HTTP/1.1 404
+Content-Length: 0
+Date: Fri, 28 Jun 2019 13:47:15 GMT
+===========================
+125 mak@punisher:> curl -i -X DELETE localhost:8080/storage/documents/shouldFail  ; echo ""
+HTTP/1.1 404
+Content-Length: 0
+Date: Fri, 28 Jun 2019 14:00:21 GMT
+===========================
+127 mak@punisher:> curl -i -X DELETE localhost:8080/storage/documents/7b3d9794-cefd-4125-8a43-a76d49104eea  ; echo ""
+HTTP/1.1 204
+Date: Fri, 28 Jun 2019 14:06:55 GMT
+===========================
+128 mak@punisher:> curl -i -X GET localhost:8080/storage/documents/7b3d9794-cefd-4125-8a43-a76d49104eea  ; echo ""
+HTTP/1.1 404
+Content-Length: 0
+Date: Fri, 28 Jun 2019 14:07:58 GMT
