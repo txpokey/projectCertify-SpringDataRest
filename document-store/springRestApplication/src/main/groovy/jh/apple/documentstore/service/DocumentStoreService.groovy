@@ -20,22 +20,19 @@ class DocumentStoreService implements DocumentStoreServiceContract{
         assert repository
         assert document.payload
         def result = repository.saveAndFlush(document)
-        assert result
-        assert result.id
+        assert result && result.id
         result
     }
 
     @Override
     List<AdhocDocument> findAll() {
         def result = repository.findAll()
-        assert result
         result
     }
 
     @Override
     Optional<AdhocDocument> findByLookupKey(@Nonnull String uuid) {
         def result = repository.findByLookupKey(uuid)
-        assert result
         result
     }
 
