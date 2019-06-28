@@ -2,11 +2,11 @@
 
 * the instructions were to use spring boot and produce a war. I provided both a war and an executable jar. 
 * spring boot is typically deployed (esp. as cloud micro-services) as an executable jar. 
-** I added the "war" plugin to the top level build.gradle and used the bootwar task to create the war. 
-** I also used the bootjar task to create the springBoot executable jar. 
+   * I added the "war" plugin to the top level build.gradle and used the bootwar task to create the war. 
+   * I also used the bootjar task to create the springBoot executable jar. 
 * I placed the bootjar and bootwar artifacts in the following directory: springRestApplication/etc/dist
-** I did not test the war, as I dont have time to install a separate tomcat. 
-** instead I only tested the application via bootjar or via IntelliJ 
+   * I did not test the war, as I dont have time to install a separate tomcat. 
+   * instead I only tested the application via bootjar or via IntelliJ 
 
 # Commands for testing API
 
@@ -39,22 +39,21 @@ The HAL/APLS api is autoconfigured, so relevant uri for the API discovery are as
 # Design Issues
 
 * Use of groovy: 
-** groovy of course is the next generation Java, and it has it's own [Groovy Language JSR 241](https://jcp.org/en/jsr/detail?id=241)
-** for the most part, this solution is only using 4 groovy idioms: List, Map, def, constructors by maps, and the 
+   * groovy of course is the next generation Java, and it has it's own [Groovy Language JSR 241](https://jcp.org/en/jsr/detail?id=241)
+   * for the most part, this solution is only using 4 groovy idioms: List, Map, def, constructors by maps, and the 
 elimination of getters or setters but without the ceremony of [Project Lombok annotations](https://projectlombok.org/) 
-** I could have used Intellij to automagically convert the groovy to straight Java, but in reality this is a rapid 
-prototyping example and groovy is ideal for those use case scenarios. As to production, I've deployed groovy grails 
-applications on at least 4 projects since 2010, and in fact have been working production Spring micro-services 
+   * I could have used Intellij to automagically convert the groovy to straight Java, but in reality this is a rapid 
+prototyping example and groovy is ideal for those use case scenarios.  
+As to production, I've deployed groovy grails applications on at least 4 projects since 2010, and in fact have been working production Spring micro-services 
 exclusively in the past year. 
 * following Spring/Grails conventions: 
-** domain objects
-** services implementing contracts
-** controllers using SpingBoot-SpringRest Mappings: e.g. @PostMapping 
-*** controllers should deletate all processing to service components, which return what the controllers need to 
-decide to: 
-**** forward
-**** redirect 
-**** render 
+   * domain objects
+   * services implementing contracts
+   * controllers using SpingBoot-SpringRest Mappings: e.g. @PostMapping 
+      * controllers should deletate all processing to service components, which return what the controllers need to decide to: 
+         * forward
+         * redirect
+         * render
 
 # Deprecated Methods: 
 
@@ -74,11 +73,11 @@ appearance of the HttpServletRequest in the PUT and POST implementations.
 # Programming Challenge - 
 
 ## Task Description
-• Implement a Java Web Application that meets the specification of the "Document Storage REST Web Service" below.
-• Limit the scope to the specification. The only error cases to be aware of are those outlined in the specification.
-• The web application should be packaged as a WAR and should run in Tomcat and Java 1.8.
-• Documents don't need to be persisted across server shutdown.
-• Documents metadata (like file name and size) should be stored in a in memory DB 
+* Implement a Java Web Application that meets the specification of the "Document Storage REST Web Service" below.
+* Limit the scope to the specification. The only error cases to be aware of are those outlined in the specification.
+* The web application should be packaged as a WAR and should run in Tomcat and Java 1.8.
+* Documents don't need to be persisted across server shutdown.
+* Documents metadata (like file name and size) should be stored in a in memory DB 
 
 Implement the below service using Spring Boot & Java 8.
 
