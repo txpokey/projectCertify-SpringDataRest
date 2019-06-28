@@ -61,11 +61,11 @@ decide to:
 * with the exception of two @Deprecated endpoints-methods, the DocumentApplicationController can be tested as an 
 ordinary Spring injected (DI) class. 
 * The  @Deprecated endpoints-methods are in this code, to compare and to contrast the anti-pattern of exposing HttpServletRequest
-** in the application controller, there are two @Deprecated methods for PUT and POST respectively, each 
+   * in the application controller, there are two @Deprecated methods for PUT and POST respectively, each 
 exposing the HttpServletRequest object. This is a Spring anti-pattern, since Spring MVC 3. 
-** In those implementations, the request is used to grab and to drain the InputStream into a byte[] payload for the 
+   * In those implementations, the request is used to grab and to drain the InputStream into a byte[] payload for the 
 AdhocDocment domain object. 
-** But exposing (e.g.) network objects like HttpServletRequest make testing the controller much harder, because it's a
+   * But exposing (e.g.) network objects like HttpServletRequest make testing the controller much harder, because it's a
  pain to mock a network object. 
 * The much preferred approach is to directly use the @RequestBody byte[] payload syntax, which eliminates the 
 appearance of the HttpServletRequest in the PUT and POST implementations. 
