@@ -12,4 +12,6 @@ interface DocumentStoreServiceContract{
 
     Optional<AdhocDocument> findByLookupKey(@Nonnull String uuid)
 
+    boolean deleteByLookupKey(@Nonnull String uuid)
+
 }

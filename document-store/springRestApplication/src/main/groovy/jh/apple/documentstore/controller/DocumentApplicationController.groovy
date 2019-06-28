@@ -43,6 +43,13 @@ class DocumentApplicationController{
                 ResponseEntity.status(HttpStatus.NOT_FOUND).build()
         re
     }
+    @DeleteMapping("documents/{lookupKey}")
+    def deleteByLookupKey(@Nonnull @PathVariable String lookupKey) {
+        def success = documentStoreService.deleteByLookupKey(lookupKey)
+        def re = success ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        re
+    }
 
     @PostMapping("documents")
     @ResponseBody

@@ -36,4 +36,14 @@ class DocumentStoreService implements DocumentStoreServiceContract{
         result
     }
 
+    @Override
+    boolean deleteByLookupKey(@Nonnull String uuid) {
+        Optional<AdhocDocument> discoveredDocumentOptional = findByLookupKey(uuid)
+        def wasDiscovered = discoveredDocumentOptional.present
+        if ( wasDiscovered ) {
+            def documentDiscovered = discoveredDocumentOptional.get()
+            repository.delete(documentDiscovered)
+        }
+        wasDiscovered
+    }
 }
