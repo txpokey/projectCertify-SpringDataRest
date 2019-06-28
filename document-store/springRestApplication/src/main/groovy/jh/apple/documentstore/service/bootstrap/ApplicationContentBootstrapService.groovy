@@ -1,5 +1,6 @@
 package jh.apple.documentstore.service.bootstrap
 
+import groovy.util.logging.Slf4j
 import jh.apple.documentstore.domain.AdhocDocument
 import jh.apple.documentstore.service.DocumentStoreServiceContract
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +16,7 @@ interface BootstrapContract{
 }
 
 interface ApplicationContentBootstrapContract extends BootstrapContract{}
-
+@Slf4j
 @Service("applicationContentBootstrapService")
 @Profile("default")
 class ApplicationContentBootstrapService implements ApplicationContentBootstrapContract {
@@ -45,6 +46,7 @@ class ApplicationContentBootstrapService implements ApplicationContentBootstrapC
         assert preImageLookupKey == resultLookupKey
         assert candidateAlaTextExample == result
         def findByResults = getFindByResults( resultLookupKey )
+        log.debug("spinUp:> ${resultLookupKey}")
         true
     }
 

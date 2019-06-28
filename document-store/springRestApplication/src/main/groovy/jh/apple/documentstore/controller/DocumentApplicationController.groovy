@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
+import javax.annotation.Nonnull
 import javax.servlet.http.HttpServletRequest
 
 @Slf4j
@@ -33,6 +34,16 @@ class DocumentApplicationController{
         candidate
     }
 
+    @GetMapping("documents/{lookupKey}")
+    def findByLookupKey(@Nonnull @PathVariable String lookupKey) {
+        Optional<AdhocDocument> optionalCandidate = documentStoreService.findByLookupKey(lookupKey)
+        def present = optionalCandidate.isPresent()
+        def candidatePayload = present ? optionalCandidate.get().payload : null
+        def re = present ? ResponseEntity.status(HttpStatus.OK).body(candidatePayload) :
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        re
+    }
+
     @PostMapping("documents")
     @ResponseBody
     def post(HttpServletRequest request) throws IOException {
@@ -42,10 +53,10 @@ class DocumentApplicationController{
         Map map = [ payload: requestBodyAsByteArray ]
         AdhocDocument documentPreImage = AdhocDocument.of(map)
         def storedImage = documentStoreService.save(documentPreImage)
-//        def size = requestBodyAsByteArray.size()
-        final def NL = "\n"
         def lookupKey = storedImage.lookupKey
         def re = ResponseEntity.status(HttpStatus.CREATED).body(lookupKey)
         re
     }
+    private final def NL = "\n"
+
 }
