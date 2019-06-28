@@ -32,4 +32,12 @@ class AdhocDocument {
         final AdhocDocument candidate = new AdhocDocument( payload )
         candidate
     }
+    static Map<String,Object> toMap( @Nonnull document ) {
+        def id = document.id
+        def loggingKey = document.loggingKey
+        def lookupKey = document.lookupKey
+        def payload = document.payload
+        def candidate = [ id: id , loggingKey: loggingKey , lookupKey: lookupKey , payload: payload ]
+        candidate
+    }
 }

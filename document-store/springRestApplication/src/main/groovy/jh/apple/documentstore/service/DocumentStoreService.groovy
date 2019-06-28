@@ -46,4 +46,21 @@ class DocumentStoreService implements DocumentStoreServiceContract{
         }
         wasDiscovered
     }
+
+    @Override
+    boolean update(@Nonnull String lookupKey, @Nonnull byte[] newPayload ) {
+        Optional<AdhocDocument> discoveredDocumentOptional = findByLookupKey(lookupKey)
+        def wasDiscovered = discoveredDocumentOptional.present
+        def wasUpdated = false
+        if ( wasDiscovered ) {
+            AdhocDocument documentDiscovered = discoveredDocumentOptional.get()
+            def newLoggingKey = AdhocDocument.computeLookupKey()
+            documentDiscovered.payload = newPayload
+            documentDiscovered.loggingKey = newLoggingKey
+            def revisedDocument = save(documentDiscovered)
+            wasUpdated = true
+        }
+        def success = wasDiscovered && wasUpdated
+        success
+    }
 }

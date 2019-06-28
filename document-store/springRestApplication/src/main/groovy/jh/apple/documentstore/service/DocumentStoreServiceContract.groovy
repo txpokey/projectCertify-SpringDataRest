@@ -14,4 +14,6 @@ interface DocumentStoreServiceContract{
 
     boolean deleteByLookupKey(@Nonnull String uuid)
 
+    boolean update(@Nonnull String lookupKey, @Nonnull byte[] newPayload )
+
 }

@@ -53,7 +53,7 @@ class DocumentApplicationController{
 
     @PostMapping("documents")
     @ResponseBody
-    def post(HttpServletRequest request) throws IOException {
+    def post(HttpServletRequest request) {
         def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
         def inputStream = request.getInputStream()
         byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
@@ -62,6 +62,17 @@ class DocumentApplicationController{
         def storedImage = documentStoreService.save(documentPreImage)
         def lookupKey = storedImage.lookupKey
         def re = ResponseEntity.status(HttpStatus.CREATED).body(lookupKey)
+        re
+    }
+    @PutMapping("documents/{lookupKey}")
+    @ResponseBody
+    def put(HttpServletRequest request, @Nonnull @PathVariable String lookupKey) {
+        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
+        def inputStream = request.getInputStream()
+        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
+        def success = documentStoreService.update(lookupKey,requestBodyAsByteArray)
+        def re = success ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build()
         re
     }
     private final def NL = "\n"
