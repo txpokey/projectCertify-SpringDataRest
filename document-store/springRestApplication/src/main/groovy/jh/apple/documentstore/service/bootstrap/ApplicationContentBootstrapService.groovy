@@ -34,21 +34,22 @@ class ApplicationContentBootstrapService implements ApplicationContentBootstrapC
     boolean spinUp() {
         def candidateAlaTextExample = getTextExampleDomainObject()
         assert candidateAlaTextExample
+        assert candidateAlaTextExample.lookupKey
+        def preImageLookupKey = candidateAlaTextExample.lookupKey ?: "BAD_PREIMAGE_LOOKUP_KEY"
+
         def result = documentStoreService.save( candidateAlaTextExample )
         assert result
         assert result.id
         assert result.lookupKey
-        assert candidateAlaTextExample.lookupKey == result.lookupKey
-        def confirmationKey = result.lookupKey
-        def findByResults = getFindByResults( confirmationKey )
+        def resultLookupKey = result.lookupKey ?: "BAD_RESULT_LOOKUP_KEY"
+        assert preImageLookupKey == resultLookupKey
+        assert candidateAlaTextExample == result
+        def findByResults = getFindByResults( resultLookupKey )
         true
     }
 
     private AdhocDocument getFindByResults( @Nonnull String uuid ) {
         Optional<AdhocDocument> optional = documentStoreService.findByLookupKey(uuid)
-//        def candidate = documentStoreService.findByUuid(uuid)
-//        def candidateList = documentStoreService.findAll()
-//        def candidate = candidateList[0]
         assert optional
         assert optional.isPresent()
         def candidate = optional.get()

@@ -19,15 +19,17 @@ class AdhocDocument {
 
     String toString() { "[${lookupKey}, ${loggingKey} ]"}
 
-    static String getUuid() {
-        UUID.randomUUID() as String
+    static String computeLookupKey() {
+        String ret = UUID.randomUUID().toString()
+        ret
     }
     static AdhocDocument of( @Nonnull map ) {
         assert map.payload
-        def uuid    = map.uuid    ?: getUuid()
-        def uuidLog = map.uuidLog ?: uuid
-        Map payload = [ loggingKey: uuid , lookupKey: uuid , payload: map.payload ]
-        def candidate = new AdhocDocument( payload )
+        final String computedKey = computeLookupKey()
+        final String lookupKey  = map.lookupKey    ?: computedKey
+        final String loggingKey = map.loggingKey   ?: lookupKey
+        final Map payload = [ loggingKey: loggingKey , lookupKey: lookupKey , payload: map.payload ]
+        final AdhocDocument candidate = new AdhocDocument( payload )
         candidate
     }
 }

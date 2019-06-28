@@ -39,14 +39,4 @@ class DocumentStoreService implements DocumentStoreServiceContract{
         result
     }
 
-//    @Override
-//    AdhocDocument findByUuid(@Nonnull String uuid) {
-//        def result = repository.findByLookupKey(uuid)
-//        def result = repository.findByUuid(uuid)
-//        def result = repository.findById(1L)
-//        assert result
-//        assert result.id
-//        result
-//    }
-
 }
