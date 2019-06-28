@@ -1,0 +1,12 @@
+Hibernate: drop table adhoc_document if exists
+Hibernate: drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: create table adhoc_document (id bigint not null, payload BLOB, uuid varchar(255), uuid_log varchar(255), primary key (id))
+16:28:57.114 [main] | o.h.t.s.i.SchemaCreatorImpl.applyImportSources.489 : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@31b7112d'
+16:28:57.118 [main] | o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory.415 : Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:29:04.238 [main] | o.s.s.c.ThreadPoolTaskExecutor.initialize.171 : Initializing ExecutorService 'applicationTaskExecutor'
+16:29:04.338 [main] | o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor.225 : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:29:05.769 [main] | o.s.b.a.e.w.EndpointLinksResolver.<init>.58 : Exposing 2 endpoint(s) beneath base path '/actuator'
+16:29:05.925 [main] | j.a.d.s.b.ApplicationContentBootstrapServiceTest.logStarted.59 : Started ApplicationContentBootstrapServiceTest in 13.612 seconds (JVM running for 15.458)
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into adhoc_document (payload, uuid, uuid_log, id) values (?, ?, ?, ?)
