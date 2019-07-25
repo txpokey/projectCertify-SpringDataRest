@@ -15,13 +15,32 @@ class DocumentStoreService implements DocumentStoreServiceContract{
     @Autowired
     H2SyncAdhocDocumentRepository repository
 
+    final private saveInRepositoryMethodReference = this.&saveInRepositoryCrud
+
     @Override
     AdhocDocument save(@Nonnull AdhocDocument document) {
         assert repository
         assert document.payload
-        def result = repository.saveAndFlush(document)
+        def result = saveInRepositoryMethodReference(document)
         assert result && result.id
         result
+    }
+
+    /**
+     * CrudRepository version
+     * @param document
+     * @return
+     */
+    private saveInRepositoryCrud(AdhocDocument document) {
+        repository.save(document)
+    }
+    /**
+     * saveAndFlush is part of JPA repository by not CrudRepository
+     * @param document
+     * @return
+     */
+    private saveInRepositoryJpa(AdhocDocument document) {
+        repository.saveAndFlush(document)
     }
 
     @Override
