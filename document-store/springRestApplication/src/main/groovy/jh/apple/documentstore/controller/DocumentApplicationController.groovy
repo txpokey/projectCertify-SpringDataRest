@@ -66,7 +66,6 @@ class DocumentApplicationController{
     }
 
     @PutMapping("documents/{lookupKey}")
-    @ResponseBody
     def put(@Nonnull @RequestBody byte[] payload,
             @Nonnull @PathVariable String lookupKey,
             @RequestHeader(value = HttpHeaders.CONTENT_TYPE, required = false)
@@ -79,7 +78,6 @@ class DocumentApplicationController{
 
     @Deprecated
     @PostMapping("documents0")
-    @ResponseBody
     def post(HttpServletRequest request) {
         def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
         def inputStream = request.getInputStream()
@@ -94,7 +92,7 @@ class DocumentApplicationController{
 
     @Deprecated
     @PutMapping("documents0/{lookupKey}")
-    @ResponseBody
+//    @ResponseBody
     def put(HttpServletRequest request, @Nonnull @PathVariable String lookupKey) {
         def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
         def inputStream = request.getInputStream()
