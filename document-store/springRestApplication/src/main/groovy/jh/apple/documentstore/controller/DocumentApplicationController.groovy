@@ -54,7 +54,6 @@ class DocumentApplicationController{
     }
 
     @PostMapping("documents")
-    @ResponseBody
     def post(@RequestBody byte[] payload,
              @RequestHeader(value = HttpHeaders.CONTENT_TYPE, required = false)
                      String contentType) {
