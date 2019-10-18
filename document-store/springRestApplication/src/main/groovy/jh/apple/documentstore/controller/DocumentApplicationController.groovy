@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -33,6 +34,42 @@ class DocumentApplicationController{
     List<AdhocDocument> findAll() {
         def candidate = documentStoreService.findAll()
         candidate
+    }
+    @GetMapping("reportMedia")
+    def reportOnMedia(@RequestHeader(value = HttpHeaders.CONTENT_TYPE, required = false)
+                                              String contentType ) {
+        String effectiveMediaType = contentType ?: MediaType.APPLICATION_JSON as String
+        def candidate = reportMediaService(effectiveMediaType)
+        candidate
+    }
+
+    final def static IMPL_ONE = "application/implementation_1_V1+json"
+    final def static IMPL_TWO = "application/implementation_2_V1+json"
+    final def static IMPL_ZERO = MediaType.APPLICATION_JSON as String
+
+    private def reportMediaService( @Nonnull String contentType  ) {
+
+        def candidate = null
+
+        switch (contentType) {
+
+            default:
+                candidate = IMPL_ZERO
+                break
+            case IMPL_ZERO :
+
+                candidate = "implementation1"
+                break
+            case IMPL_ONE :
+
+                candidate = "implementation1"
+                break
+            case IMPL_TWO :
+
+                candidate = "implementation2"
+                break
+        }
+        ResponseEntity.status(HttpStatus.OK).body([ media: candidate])
     }
 
     @GetMapping("documents/{lookupKey}")

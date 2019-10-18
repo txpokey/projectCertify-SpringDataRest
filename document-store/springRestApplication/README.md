@@ -10,6 +10,7 @@
 
 # Commands for testing API
 
+* curl -i -X GET localhost:8080/storage/reportMedia -H "Content-Type: application/implementation_2_V1+json"
 * curl -i -X GET localhost:8080/storage/documents/91924ed8-9a6b-4846-87bc-1d5bd71b7a84
 * curl -i -X POST localhost:8080/storage/documents   -H "Content-Type: application/pdf"   --data-binary @myCountry.pdf
 * curl -i -X PUT localhost:8080/storage/documents/91924ed8-9a6b-4846-87bc-1d5bd71b7a84 -H "Content-Type: text/plain; charset=us-ascii"   --data-binary @daveBowman

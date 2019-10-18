@@ -40,7 +40,6 @@ allprojects {
         delete 'out'
         delete 'build'
     }
-
 }
 
 apply from: "${rootProject.projectDir}/etc/gradle/apply/peek.gradle", to: allprojects
