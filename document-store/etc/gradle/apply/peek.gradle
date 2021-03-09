@@ -3,7 +3,7 @@ task hello {
         println "I'm $task.project.name"
     }
 }
-task version << {
+task version {
     println "Gradle version: " + project.getGradle().getGradleVersion()
     println "Groovy version: " + GroovySystem.getVersion()
 }
