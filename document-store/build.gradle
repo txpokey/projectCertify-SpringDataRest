@@ -1,6 +1,6 @@
 ext['groovy.version'] = groovyVersion // need for compile groovy to pick up groovy fix
 
-allprojects {
+subprojects {
     group = 'jh.apple'
     version = '0.0.1-SNAPSHOT'
 
@@ -27,6 +27,7 @@ allprojects {
         delete 'build'
     }
 }
+apply plugin: 'groovy'
 
 apply from: "${rootProject.projectDir}/etc/gradle/apply/peek.gradle", to: allprojects
 
