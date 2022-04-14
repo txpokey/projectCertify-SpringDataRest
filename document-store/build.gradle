@@ -21,33 +21,8 @@ allprojects {
         mavenCentral()
         maven { url "https://repo.spring.io/libs-release/" }
     }
-
-//    dependencies {
-//        implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-//        implementation("org.apache.groovy:groovy:${groovyVersion}")
-//
-//        implementation 'org.springframework.data:spring-data-rest-hal-browser'
-//        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//        // --------------------
-//        implementation('org.springframework.boot:spring-boot-starter-actuator')
-//        testImplementation('org.springframework.boot:spring-boot-starter-test')
-//        // --------------------
-//        implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
-//        testImplementation("org.testng:testng:${testNgVersion}")
-//        implementation('com.google.code.findbugs:jsr305:latest.integration')
-//    }
     dependencies {
         implementation("org.apache.groovy:groovy:${groovyVersion}")
-//        implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-//        implementation 'org.springframework.data:spring-data-rest-hal-browser'
-//        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//        // --------------------
-//        implementation('org.springframework.boot:spring-boot-starter-actuator')
-//        testImplementation('org.springframework.boot:spring-boot-starter-test')
-//        // --------------------
-//        implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
-//        testImplementation("org.testng:testng:${testNgVersion}")
-//        implementation('com.google.code.findbugs:jsr305:latest.integration')
     }
     buildDir= "$projectDir/out" as Object
     clean {
@@ -70,7 +45,6 @@ buildscript {
     dependencies {
         classpath("org.apache.groovy:groovy:${groovyVersion}")
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-// https://mvnrepository.com/artifact/io.spring.gradle/dependency-management-plugin
         classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
         classpath group: 'org.sonarqube', name: 'org.sonarqube.gradle.plugin', version: '2.7.1'
     }
