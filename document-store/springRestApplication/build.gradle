@@ -6,19 +6,28 @@ buildscript {
     dependencies {
 //        classpath group: 'org.sonarqube', name: 'org.sonarqube.gradle.plugin', version: '2.7.1'
     }
+    dependencies {
+        classpath("org.apache.groovy:groovy:${groovyVersion}")
+//        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
+    }
 }
 
 //apply plugin: 'org.sonarqube'
 
 dependencies {
     runtimeOnly('com.h2database:h2')
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation("org.apache.groovy:groovy:${groovyVersion}")
-    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
     implementation('com.google.code.findbugs:jsr305:latest.integration')
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     testImplementation("org.testng:testng:${testNgVersion}")
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    // https://mvnrepository.com/artifact/org.apache.groovy/groovy-bom
+//    implementation group: 'org.apache.groovy', name: 'groovy-bom', version: '4.0.1', ext: 'pom'
+
 }
 bootJar {
     baseName = project.name
