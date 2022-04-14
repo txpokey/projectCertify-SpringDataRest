@@ -24,7 +24,7 @@ allprojects {
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-        implementation 'org.codehaus.groovy:groovy'
+        implementation 'org.apache.groovy:groovy'
         implementation 'org.springframework.data:spring-data-rest-hal-browser'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         // --------------------
@@ -54,14 +54,14 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath("org.codehaus.groovy:groovy:${groovyVersion}")
+//        classpath("org.apache.groovy:groovy:${groovyVersion}")
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
         classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
         classpath group: 'org.sonarqube', name: 'org.sonarqube.gradle.plugin', version: '2.7.1'
     }
 }
 
-wrapper { // future version for gradle 5
+wrapper {
     gradleVersion = '7.4.2'
     distributionType = Wrapper.DistributionType.ALL
 }

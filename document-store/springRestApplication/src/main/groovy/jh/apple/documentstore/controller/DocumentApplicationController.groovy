@@ -53,9 +53,6 @@ class DocumentApplicationController{
 
         switch (contentType) {
 
-            default:
-                candidate = IMPL_ZERO
-                break
             case IMPL_ZERO :
 
                 candidate = "implementation1"
@@ -67,6 +64,10 @@ class DocumentApplicationController{
             case IMPL_TWO :
 
                 candidate = "implementation2"
+                break
+
+            default:
+                candidate = IMPL_ZERO
                 break
         }
         ResponseEntity.status(HttpStatus.OK).body([ media: candidate])
