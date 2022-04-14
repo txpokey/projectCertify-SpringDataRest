@@ -2,17 +2,13 @@ buildscript {
     rootProject.buildscript
     repositories {
         mavenCentral()
-//        mavenLocal()
-//        maven { url "https://repo.spring.io/plugins-release/" }
-//        maven { url "https://repo.spring.io/libs-release/" }
-//        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
 //        classpath group: 'org.sonarqube', name: 'org.sonarqube.gradle.plugin', version: '2.7.1'
     }
 }
-//apply plugin: 'org.sonarqube'
 
+//apply plugin: 'org.sonarqube'
 
 dependencies {
     runtimeOnly('com.h2database:h2')
