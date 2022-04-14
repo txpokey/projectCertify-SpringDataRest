@@ -19,7 +19,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-//        maven { url "https://repo.spring.io/libs-release/" }
     }
     dependencies {
         implementation("org.apache.groovy:groovy:${groovyVersion}")
@@ -37,16 +36,12 @@ buildscript {
 
     repositories {
         mavenCentral()
-        mavenLocal()
-//        maven { url "https://repo.spring.io/plugins-release/" }
-//        maven { url "https://repo.spring.io/libs-release/" }
-//        maven { url "https://plugins.gradle.org/m2/" }
+//        mavenLocal()
     }
     dependencies {
         classpath("org.apache.groovy:groovy:${groovyVersion}")
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
         classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
-//        classpath group: 'org.sonarqube', name: 'org.sonarqube.gradle.plugin', version: '2.7.1'
     }
 }
 
