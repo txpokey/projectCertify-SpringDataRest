@@ -10,8 +10,8 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
+    sourceCompatibility = javaSrcVersion
+    targetCompatibility = javaClassVersion
 
     version =  "${outputLibVersion}"
 
