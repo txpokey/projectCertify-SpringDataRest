@@ -1,3 +1,15 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.apache.groovy:groovy:${groovyVersion}")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
+    }
+}
+
 subprojects {
     group = 'jh.apple'
 
@@ -25,19 +37,8 @@ subprojects {
     }
 }
 apply plugin: 'groovy'
-apply from: "${rootProject.projectDir}/etc/gradle/apply/peek.gradle", to: allprojects
+apply from: "${rootProject.projectDir}/etc/gradle/apply/peek.gradle", to: subprojects
 
-buildscript {
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.apache.groovy:groovy:${groovyVersion}")
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-        classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
-    }
-}
 
 wrapper {
     gradleVersion = '7.4.2'
