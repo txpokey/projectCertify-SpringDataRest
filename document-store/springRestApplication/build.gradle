@@ -26,7 +26,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
     // https://mvnrepository.com/artifact/org.apache.groovy/groovy-bom
-//    implementation group: 'org.apache.groovy', name: 'groovy-bom', version: '4.0.1', ext: 'pom'
+//    implementation group: 'org.apache.groovy', name: 'groovy-bom', version: '4.0.2', ext: 'pom'
 
 }
 bootJar {
