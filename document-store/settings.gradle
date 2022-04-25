@@ -1,7 +1,3 @@
-pluginManagement {
-	repositories {
-		gradlePluginPortal()
-	}
-}
+
 rootProject.name = 'document-store'
 include 'springRestApplication'
