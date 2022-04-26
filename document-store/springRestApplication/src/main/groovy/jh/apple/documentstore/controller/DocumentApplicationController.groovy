@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 import javax.annotation.Nonnull
-import javax.servlet.http.HttpServletRequest
+//import javax.servlet.http.HttpServletRequest
 
 @Slf4j
 @Profile(["default"])
@@ -114,32 +114,32 @@ class DocumentApplicationController{
         re
     }
 
-    @Deprecated
-    @PostMapping("documents0")
-    def post(HttpServletRequest request) {
-        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
-        def inputStream = request.getInputStream()
-        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
-        Map map = [payload: requestBodyAsByteArray]
-        AdhocDocument documentPreImage = AdhocDocument.of(map)
-        def storedImage = documentStoreService.save(documentPreImage)
-        def lookupKey = storedImage.lookupKey
-        def re = ResponseEntity.status(HttpStatus.CREATED).body(lookupKey)
-        re
-    }
+//    @Deprecated
+//    @PostMapping("documents0")
+//    def post(HttpServletRequest request) {
+//        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
+//        def inputStream = request.getInputStream()
+//        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
+//        Map map = [payload: requestBodyAsByteArray]
+//        AdhocDocument documentPreImage = AdhocDocument.of(map)
+//        def storedImage = documentStoreService.save(documentPreImage)
+//        def lookupKey = storedImage.lookupKey
+//        def re = ResponseEntity.status(HttpStatus.CREATED).body(lookupKey)
+//        re
+//    }
 
-    @Deprecated
-    @PutMapping("documents0/{lookupKey}")
-//    @ResponseBody
-    def put(HttpServletRequest request, @Nonnull @PathVariable String lookupKey) {
-        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
-        def inputStream = request.getInputStream()
-        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
-        def success = documentStoreService.update(lookupKey, requestBodyAsByteArray)
-        def re = success ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
-                ResponseEntity.status(HttpStatus.NOT_FOUND).build()
-        re
-    }
+//    @Deprecated
+//    @PutMapping("documents0/{lookupKey}")
+////    @ResponseBody
+//    def put(HttpServletRequest request, @Nonnull @PathVariable String lookupKey) {
+//        def contentType = request.getHeader(HttpHeaders.CONTENT_TYPE)
+//        def inputStream = request.getInputStream()
+//        byte[] requestBodyAsByteArray = IOUtils.toByteArray(inputStream)
+//        def success = documentStoreService.update(lookupKey, requestBodyAsByteArray)
+//        def re = success ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+//                ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+//        re
+//    }
     private final def NL = "\n"
 
 }
