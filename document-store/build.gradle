@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         classpath("org.apache.groovy:groovy:${groovyVersion}")
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-        classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
+//        classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.11.RELEASE'
     }
 }
 
@@ -36,9 +36,7 @@ subprojects {
         delete 'build'
     }
 }
-apply plugin: 'groovy'
 apply from: "${rootProject.projectDir}/etc/gradle/apply/peek.gradle", to: subprojects
-
 
 wrapper {
     gradleVersion = '7.4.2'
